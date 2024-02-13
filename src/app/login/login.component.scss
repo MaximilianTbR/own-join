@@ -1,0 +1,33 @@
+.main-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.bg-bl {
+    background-color: #2947de !important;
+}
+
+.c-bl {
+    color: #2947de !important;
+}
+
+.main-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.outer-logo-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

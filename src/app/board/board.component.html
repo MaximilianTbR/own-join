@@ -1,0 +1,30 @@
+<div class="main-div">
+    <article class="board-article">
+        <div class="all-tables">
+            <div class="whole-table-position">
+                <h3 class="headline headline-responsive">TO DO</h3>
+                <div class="single-table" id="todo"
+                    ondrop="MoveTo('todo')"
+                    ondragover="allowDrop(event)"></div>
+            </div>
+            <div class="whole-table-position">
+                <h3 class="headline">IN PROGRESS</h3>
+                <div class="single-table" id="inprogress"
+                    ondrop="MoveTo('inprogress')"
+                    ondragover="allowDrop(event)"></div>
+            </div>
+            <div class="whole-table-position">
+                <h3 class="headline ">TESTING</h3>
+                <div class="single-table " id="testing"
+                    ondrop="MoveTo('testing')"
+                    ondragover="allowDrop(event)"></div>
+            </div>
+            <div class="whole-table-position">
+                <h3 class="headline ">DONE</h3>
+                <div class="single-table " id="done"
+                    ondrop="MoveTo('done')"
+                    ondragover="allowDrop(event)"></div>
+            </div>
+        </div>
+    </article>
+</div>

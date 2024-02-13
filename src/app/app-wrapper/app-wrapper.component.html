@@ -1,0 +1,295 @@
+<!--
+  This example requires updating your template:
+
+  ```
+  <html class="h-full bg-white">
+  <body class="h-full">
+  ```
+-->
+<div>
+    <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
+    <div class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
+        <!--
+        Off-canvas menu backdrop, show/hide based on off-canvas menu state.
+  
+        Entering: "transition-opacity ease-linear duration-300"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "transition-opacity ease-linear duration-300"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+        <div class="fixed inset-0 bg-gray-900/80"
+            *ngIf="visibleOnResponsive"></div>
+
+        <div class="fixed inset-0 flex" *ngIf="visibleOnResponsive">
+            <!--
+          Off-canvas menu, show/hide based on off-canvas menu state.
+  
+          Entering: "transition ease-in-out duration-300 transform"
+            From: "-translate-x-full"
+            To: "translate-x-0"
+          Leaving: "transition ease-in-out duration-300 transform"
+            From: "translate-x-0"
+            To: "-translate-x-full"
+        -->
+            <div class="relative mr-16 flex w-full max-w-xs flex-1">
+                <!--
+            Close button, show/hide based on off-canvas menu state.
+  
+            Entering: "ease-in-out duration-300"
+              From: "opacity-0"
+              To: "opacity-100"
+            Leaving: "ease-in-out duration-300"
+              From: "opacity-100"
+              To: "opacity-0"
+          -->
+                <div
+                    class="absolute left-full top-0 flex w-16 justify-center pt-5">
+                    <button type="button" class="-m-2.5 p-2.5"
+                        (click)="hideSidebarOnResponsive()">
+                        <span class="sr-only">Close sidebar</span>
+                        <svg class="h-6 w-6 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Sidebar component, swap this element with another sidebar if you like -->
+                <div *ngIf="visibleOnResponsive"
+                    class="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-2 bg-join-main-color">
+                    <div class="flex h-16 shrink-0 items-center">
+                        <img class="h-8 w-auto"
+                            src="https://tailwindui.com/img/logos/mark.svg?color=white"
+                            alt="Your Company">
+                    </div>
+                    <nav class="flex flex-1 flex-col">
+                        <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                            <li>
+                                <ul role="list" class="-mx-2 space-y-1">
+                                    <li>
+                                        <!-- Current: "bg-indigo-700 text-white", Default: "text-indigo-200 hover:text-white hover:bg-indigo-700" -->
+                                        <a routerLink="board" id="board"
+                                            class="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                class="w-5 h-5">
+                                                <path
+                                                    d="M14 17h2.75A2.25 2.25 0 0 0 19 14.75v-9.5A2.25 2.25 0 0 0 16.75 3H14v14ZM12.5 3h-5v14h5V3ZM3.25 3H6v14H3.25A2.25 2.25 0 0 1 1 14.75v-9.5A2.25 2.25 0 0 1 3.25 3Z" />
+                                            </svg>
+                                            Board
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a routerLink="backlog" id="backlog"
+                                            class="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                class="w-5 h-5">
+                                                <path
+                                                    d="M4.464 3.162A2 2 0 0 1 6.28 2h7.44a2 2 0 0 1 1.816 1.162l1.154 2.5c.067.145.115.291.145.438A3.508 3.508 0 0 0 16 6H4c-.288 0-.568.035-.835.1.03-.147.078-.293.145-.438l1.154-2.5Z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M2 9.5a2 2 0 0 1 2-2h12a2 2 0 1 1 0 4H4a2 2 0 0 1-2-2Zm13.24 0a.75.75 0 0 1 .75-.75H16a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75h-.01a.75.75 0 0 1-.75-.75V9.5Zm-2.25-.75a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75H13a.75.75 0 0 0 .75-.75V9.5a.75.75 0 0 0-.75-.75h-.01ZM2 15a2 2 0 0 1 2-2h12a2 2 0 1 1 0 4H4a2 2 0 0 1-2-2Zm13.24 0a.75.75 0 0 1 .75-.75H16a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75h-.01a.75.75 0 0 1-.75-.75V15Zm-2.25-.75a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75H13a.75.75 0 0 0 .75-.75V15a.75.75 0 0 0-.75-.75h-.01Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            Backlog
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a routerLink="add-task" id="addTask"
+                                            class="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                class="w-5 h-5">
+                                                <path fill-rule="evenodd"
+                                                    d="M4.5 2A1.5 1.5 0 0 0 3 3.5v13A1.5 1.5 0 0 0 4.5 18h11a1.5 1.5 0 0 0 1.5-1.5V7.621a1.5 1.5 0 0 0-.44-1.06l-4.12-4.122A1.5 1.5 0 0 0 11.378 2H4.5ZM10 8a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0v-1.5h-1.5a.75.75 0 0 1 0-1.5h1.5v-1.5A.75.75 0 0 1 10 8Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            Add task
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a routerLink="help" id="help"
+                                            class="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                class="w-5 h-5">
+                                                <path
+                                                    d="M6.5 9a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0Z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM9 5a4 4 0 1 0 2.248 7.309l1.472 1.471a.75.75 0 1 0 1.06-1.06l-1.471-1.472A4 4 0 0 0 9 5Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            Help
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a routerLink="settings" id="settings"
+                                            class="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                                class="w-5 h-5">
+                                                <path fill-rule="evenodd"
+                                                    d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-5.5-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 12a5.99 5.99 0 0 0-4.793 2.39A6.483 6.483 0 0 0 10 16.5a6.483 6.483 0 0 0 4.793-2.11A5.99 5.99 0 0 0 10 12Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            Settings
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Static sidebar for desktop -->
+    <div
+        class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+        <!-- Sidebar component, swap this element with another sidebar if you like -->
+        <div
+            class="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 bg-join-main-color">
+            <div class="flex h-16 shrink-0 items-center">
+                <img class="h-8 w-auto"
+                    src="https://tailwindui.com/img/logos/mark.svg?color=white"
+                    alt="Your Company">
+            </div>
+            <nav class="flex flex-1 flex-col">
+                <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                    <li>
+                        <ul role="list" class="-mx-2 space-y-1">
+                            <li>
+                                <!-- Current: "bg-indigo-700 text-white", Default: "text-indigo-200 hover:text-white hover:bg-indigo-700" -->
+                                <a routerLink="board" id="boardSidebar"
+                                    class="bg-indigo-700 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20" fill="currentColor"
+                                        class="w-5 h-5">
+                                        <path
+                                            d="M14 17h2.75A2.25 2.25 0 0 0 19 14.75v-9.5A2.25 2.25 0 0 0 16.75 3H14v14ZM12.5 3h-5v14h5V3ZM3.25 3H6v14H3.25A2.25 2.25 0 0 1 1 14.75v-9.5A2.25 2.25 0 0 1 3.25 3Z" />
+                                    </svg>
+
+                                    Board
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="backlog" id="backlogSidebar"
+                                    class="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20" fill="currentColor"
+                                        class="w-5 h-5">
+                                        <path
+                                            d="M4.464 3.162A2 2 0 0 1 6.28 2h7.44a2 2 0 0 1 1.816 1.162l1.154 2.5c.067.145.115.291.145.438A3.508 3.508 0 0 0 16 6H4c-.288 0-.568.035-.835.1.03-.147.078-.293.145-.438l1.154-2.5Z" />
+                                        <path fill-rule="evenodd"
+                                            d="M2 9.5a2 2 0 0 1 2-2h12a2 2 0 1 1 0 4H4a2 2 0 0 1-2-2Zm13.24 0a.75.75 0 0 1 .75-.75H16a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75h-.01a.75.75 0 0 1-.75-.75V9.5Zm-2.25-.75a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75H13a.75.75 0 0 0 .75-.75V9.5a.75.75 0 0 0-.75-.75h-.01ZM2 15a2 2 0 0 1 2-2h12a2 2 0 1 1 0 4H4a2 2 0 0 1-2-2Zm13.24 0a.75.75 0 0 1 .75-.75H16a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75h-.01a.75.75 0 0 1-.75-.75V15Zm-2.25-.75a.75.75 0 0 0-.75.75v.01c0 .414.336.75.75.75H13a.75.75 0 0 0 .75-.75V15a.75.75 0 0 0-.75-.75h-.01Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+
+                                    Backlog
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="add-task" id="addTaskSidebar"
+                                    class="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20" fill="currentColor"
+                                        class="w-5 h-5">
+                                        <path fill-rule="evenodd"
+                                            d="M4.5 2A1.5 1.5 0 0 0 3 3.5v13A1.5 1.5 0 0 0 4.5 18h11a1.5 1.5 0 0 0 1.5-1.5V7.621a1.5 1.5 0 0 0-.44-1.06l-4.12-4.122A1.5 1.5 0 0 0 11.378 2H4.5ZM10 8a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0v-1.5h-1.5a.75.75 0 0 1 0-1.5h1.5v-1.5A.75.75 0 0 1 10 8Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+
+                                    Add task
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="help" id="helpSidebar"
+                                    class="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20" fill="currentColor"
+                                        class="w-5 h-5">
+                                        <path
+                                            d="M6.5 9a2.5 2.5 0 1 1 5 0 2.5 2.5 0 0 1-5 0Z" />
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM9 5a4 4 0 1 0 2.248 7.309l1.472 1.471a.75.75 0 1 0 1.06-1.06l-1.471-1.472A4 4 0 0 0 9 5Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+
+                                    Help
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="settings" id="settingsSidebar"
+                                    class="text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20" fill="currentColor"
+                                        class="w-5 h-5">
+                                        <path fill-rule="evenodd"
+                                            d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-5.5-2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0ZM10 12a5.99 5.99 0 0 0-4.793 2.39A6.483 6.483 0 0 0 10 16.5a6.483 6.483 0 0 0 4.793-2.11A5.99 5.99 0 0 0 10 12Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+
+                                    Settings
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="-mx-6 mt-auto">
+                        <a href="#"
+                            class="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-indigo-700">
+                            <img class="h-8 w-8 rounded-full bg-indigo-700"
+                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                alt>
+                            <span class="sr-only">Your profile</span>
+                            <span aria-hidden="true">Tom Cook</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div
+        class="sticky top-0 z-40 flex items-center gap-x-6 bg-indigo-600 px-4 py-4 shadow-sm sm:px-6 lg:hidden bg-join-main-color">
+        <button type="button" class="-m-2.5 p-2.5 text-indigo-200 lg:hidden"
+            (click)="showSidebarOnResponsive()">
+            <span class="sr-only">Open sidebar</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </button>
+        <div
+            class="flex-1 text-sm font-semibold leading-6 text-white"></div>
+        <a href="#">
+            <span class="sr-only">Your profile</span>
+            <img class="h-8 w-8 rounded-full bg-indigo-700"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt>
+        </a>
+    </div>
+
+    <main class="lg:pl-72">
+        <div class="px-4 sm:px-6 lg:px-8">
+            <router-outlet
+                (activate)="markCurrentRouteInSidebar()"></router-outlet>
+        </div>
+    </main>
+</div>
