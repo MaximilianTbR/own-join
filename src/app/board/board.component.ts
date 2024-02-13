@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SingleTaskComponent } from '../single-task/single-task.component';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-board',
@@ -8,9 +11,19 @@ import { SingleTaskComponent } from '../single-task/single-task.component';
 })
 export class BoardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private afAuth: AngularFireAuth, public firestore: AngularFirestore, private router: Router) { }
 
   ngOnInit(): void {
+    this.afAuth.onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in.
+        console.log('User is signed in:', user);
+        console.log(user.uid)
+      } else {
+        // No user is signed in.
+        console.log('No user is signed in.');
+      }
+    });
   }
 
   tasks = [];

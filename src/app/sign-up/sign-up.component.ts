@@ -38,6 +38,12 @@ export class SignUpComponent implements OnInit {
       .then((result) => {
         // Handle successful registration here (e.g., routing or setting user data)
         console.log('Registration successful', result);
+        if (result.user) {
+          this.user.userUID = result.user.uid;
+          console.log("userUID was available")
+        } else {
+          this.user.userUID = "no userUID was available at signup";
+        }
         this.firestore
           .collection('users')
           .add(this.user.toJSON())
