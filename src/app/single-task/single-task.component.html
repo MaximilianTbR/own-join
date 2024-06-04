@@ -1,0 +1,32 @@
+<div class="new-task" draggable="true" id="{{i}}"
+    ondragstart="startDragging(i)" onclick="openTodoInfo(i)">
+    <div class="new-task-urgency-color" id="new-task-urgency-color-{{i}}"></div>
+    <div class="new-task-text-elements">
+        <div class="new-task-upper-elements">
+            <div class="new-task-inner-elements-left">
+                <div class="draggable-part" id="draggable-part-{{i}}">
+                    <img src="img/draggable Kopie 3.png">
+                </div>
+                <div class="todo-variables">
+                    <div class="todo-text">
+                        <div class="todo-title"
+                            id="todo-title-{{i}}"><b></b></div>
+                    </div>
+                    <div class="todo-deadline"
+                        id="todo-deadline-{{i}}"></div>
+                </div>
+            </div>
+            <div class="new-task-inner-elements-right ">
+                <div class="done-button " onclick="markAsDone(i) ">__</div>
+            </div>
+        </div>
+        <div class="new-task-details hide" id="new-task-details-{{i}}">
+            <h5>Description:</h5>
+            <p></p>
+            <h5>Category:</h5>
+            <p></p>
+            <h5>Urgency:</h5>
+            <p></p>
+        </div>
+    </div>
+</div>

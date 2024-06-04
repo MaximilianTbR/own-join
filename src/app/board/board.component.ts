@@ -3,6 +3,7 @@ import { SingleTaskComponent } from '../single-task/single-task.component';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { Task } from '../models/task';
 
 @Component({
   selector: 'app-board',
@@ -13,20 +14,55 @@ export class BoardComponent implements OnInit {
 
   constructor(private afAuth: AngularFireAuth, public firestore: AngularFirestore, private router: Router) { }
 
+  allTasks: Task[] = [];
+  task = new Task();
+  taskTitle = this.task.title;
+  userUID: string = "";
+  allSortedTasks: Task[] = [];
+
+
   ngOnInit(): void {
     this.afAuth.onAuthStateChanged(user => {
       if (user) {
         // User is signed in.
         console.log('User is signed in:', user);
         console.log(user.uid)
+        this.userUID = user.uid;
       } else {
         // No user is signed in.
         console.log('No user is signed in.');
       }
     });
+    this.loadAllTasks();
+  }
+
+  loadAllTasks() {
+    this.firestore
+      .collection('tasks')
+      .valueChanges()
+      .subscribe((changes: any) => {
+        this.allTasks = changes;
+        console.log(this.allTasks);
+        this.sortTasks();
+      })
   }
 
   tasks = [];
+
+  sortTasks() {
+    console.log("sort function is triggered")
+    this.allTasks.forEach(task => {
+      if (task.userID == this.userUID) {
+        console.log("this is the task:")
+        console.log(task)
+        this.allSortedTasks.push(task);
+        console.log(this.allSortedTasks)
+        // Optionally, you can break out of the loop if your environment supports it
+      } else {
+        console.log("no task found")
+      }
+    });
+  }
 
   /**
    * 
@@ -64,50 +100,6 @@ export class BoardComponent implements OnInit {
       }
     }
   }
-
-
-  /**
-   * 
-   * template function which is used for all render functions of board.js 
-   * 
-   * @param {number} i - respective element of the json loaded from the backend
-   */
-  /*
-  templateBoard(i) {
-      return `  
-  <div class="new-task" draggable="true" id="${i}" ondragstart="startDragging(${i})" onclick="openTodoInfo(${i})">
-      <div class="new-task-urgency-color" id="new-task-urgency-color-${i}"></div>
-      <div class="new-task-text-elements">
-          <div class="new-task-upper-elements">
-              <div class="new-task-inner-elements-left">
-                  <div class="draggable-part" id="draggable-part-${i}">
-                      <img src="img/draggable Kopie 3.png">
-                  </div>
-                  <div class="todo-variables">
-                      <div class="todo-text">
-                          <div class="todo-title" id="todo-title-${i}"><b>${tasks[i]['Titel']}</b></div>
-                      </div>
-                      <div class="todo-deadline" id="todo-deadline-${i}">${tasks[i]['Date']}</div>
-                  </div>
-              </div>    
-              <div class="new-task-inner-elements-right ">
-                  <div class="done-button "  onclick="markAsDone(${i}) ">__</div>
-              </div>
-          </div>  
-          <div class="new-task-details hide" id="new-task-details-${i}">
-              <h5>Description:</h5>
-              <p>${tasks[i]['Description']}</p>
-              <h5>Category:</h5>
-              <p>${tasks[i]['Category']}</p>
-              <h5>Urgency:</h5>
-              <p>${tasks[i]['Urgency']}</p>
-          </div>
-      </div>
-  </div>
-  `;
-  }
-  
-  */
 
   currentDraggedElement: any;
 

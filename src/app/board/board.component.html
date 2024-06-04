@@ -11,7 +11,9 @@
                 <h3 class="headline">IN PROGRESS</h3>
                 <div class="single-table" id="inprogress"
                     ondrop="MoveTo('inprogress')"
-                    ondragover="allowDrop(event)"></div>
+                    ondragover="allowDrop(event)">
+                    <app-single-task
+                        *ngFor="let task of this.allSortedTasks; let i = index;"></app-single-task></div>
             </div>
             <div class="whole-table-position">
                 <h3 class="headline ">TESTING</h3>

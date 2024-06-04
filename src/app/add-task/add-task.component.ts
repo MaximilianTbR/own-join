@@ -13,6 +13,8 @@ import { Firestore, arrayUnion } from 'firebase/firestore'; // Import Firestore 
 
 
 
+
+
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
@@ -23,6 +25,7 @@ export class AddTaskComponent implements OnInit {
   task = new Task();
   title: string = "";
   currentUserUID: string = "";
+  testObject: string = "TestObject";
 
   constructor(private firestore: AngularFirestore, private afAuth: AngularFireAuth, private router: Router) { }
 
@@ -42,21 +45,34 @@ export class AddTaskComponent implements OnInit {
   }
 
   addTaskToUserService() {
+    console.log(this.task)
+
     this.addTask()
-      .then(() => console.log('Task added successfully'))
-      .catch(error => console.error('Error adding task: ', error));
   }
 
   addTask() {
-    console.log(this.task);
+    /*console.log(this.task);
 
-    const userRef = this.firestore.collection('users').doc(this.currentUserUID);
+    const userRef = this.firestore.collection('tasks').add(this.currentUserUID);
 
     return userRef.update({
-      allTasks: arrayUnion(this.task.toJSON()) // Use arrayUnion directly from Firestore
-    });
+      allTasks: arrayUnion(this.task)
+    });*/
 
+    this.task.userID = this.currentUserUID;
+
+    console.log(this.task);
+
+    this.firestore.collection('tasks').add(this.task.toJSON())
+      .then(docRef => {
+        console.log('Document written with ID: ', docRef.id);
+      })
+      .catch(error => {
+        console.error('Error adding document: ', error);
+      });
   }
+
+
 
   addDocumentWithCustomID() {
 
