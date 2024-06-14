@@ -12,4 +12,16 @@ export class BacklogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  allSampleTasks = [
+    {
+      title: "build crm", 
+      description: "salesforce", 
+      category: "in progress", 
+      dueDate: 506080, 
+      urgency: "high",
+      assignedTo: "max", 
+      userID: "none"
+     }
+  ]
+
 }

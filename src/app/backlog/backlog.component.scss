@@ -1,0 +1,24 @@
+.main-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+}
+
+.bg-join-main-color {
+  background-color: #1e3190 !important;
+}
+
+
+@media (min-width: 640px) {
+  .sm\:items-center {
+      align-items: center;
+  }
+  .table-div {
+    align-items: center;
+    max-width: 765px;
+    width: 100%;
+  }
+}
