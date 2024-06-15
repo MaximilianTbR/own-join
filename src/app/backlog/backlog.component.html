@@ -15,7 +15,7 @@
           <thead>
             <tr>
               <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Title</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Category</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Assigned to:</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Due date</th>
               <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
@@ -24,11 +24,11 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200">
-            <tr *ngFor="let task of this.allSampleTasks; let i = index;">
-              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{{this.allSampleTasks[i]["title"]}}</td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{this.allSampleTasks[i]["category"]}}</td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{this.allSampleTasks[i]["assignedTo"]}}</td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{this.allSampleTasks[i]["dueDate"]}}</td>
+            <tr *ngFor="let task of this.allTasks; let i = index;">
+              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{{this.allTasks[i]["title"]}}</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{this.allTasks[i]["category"]}}</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{this.allTasks[i]["assignedTo"]}}</td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{this.allTasks[i]["dueDate"]}}</td>
               <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                 <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only"></span></a>
               </td>
