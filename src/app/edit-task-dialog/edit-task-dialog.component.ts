@@ -22,6 +22,10 @@ export class EditTaskDialogComponent implements OnInit {
     }
   }
 
+  editTask() {
+
+  }
+
   closeDialog() {
     this.close.emit(); // Emit the close event
   }
