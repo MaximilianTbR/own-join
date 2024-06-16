@@ -30,7 +30,7 @@
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{this.allTasks[i]["assignedTo"]}}</td>
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{this.allTasks[i]["dueDate"]}}</td>
               <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only"></span></a>
+                <button (click)="openDialog(i)" class="text-indigo-600 hover:text-indigo-900">Edit</button>
               </td>
             </tr>
 
@@ -41,3 +41,5 @@
     </div>
   </div>
 </div>
+<app-edit-task-dialog [isVisible]="isDialogVisible"   [task]="allTasks[selectedTaskIndex!]"
+*ngIf="isDialogVisible" (close)="closeDialog()"></app-edit-task-dialog>

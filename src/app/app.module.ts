@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { EditTaskDialogComponent } from './edit-task-dialog/edit-task-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
     HelpDocsComponent,
     SettingsComponent,
     SingleTaskComponent,
+    EditTaskDialogComponent,
   ],
   imports: [
     BrowserModule,

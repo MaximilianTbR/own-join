@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Task } from '../models/task';
+import { EditTaskDialogComponent } from '../edit-task-dialog/edit-task-dialog.component';
 
 @Component({
   selector: 'app-backlog',
@@ -18,7 +19,7 @@ export class BacklogComponent implements OnInit {
   taskTitle = this.task.title;
   userUID: string = "";
   allSortedTasks: Task[] = [];
-
+  isDialogVisible = false;
 
   ngOnInit(): void {
     this.afAuth.onAuthStateChanged(user => {
@@ -48,16 +49,17 @@ export class BacklogComponent implements OnInit {
       })
   }
 
-  allSampleTasks = [
-    {
-      title: "build crm", 
-      description: "salesforce", 
-      category: "in progress", 
-      dueDate: 506080, 
-      urgency: "high",
-      assignedTo: "max", 
-      userID: "none"
-     }
-  ]
+  selectedTaskIndex!: number;
 
+
+  openDialog(index: number) {
+    this.selectedTaskIndex = index;
+    this.isDialogVisible = true;
+    console.log('Dialog opened');
+  }
+
+  closeDialog() {
+    this.isDialogVisible = false;
+    console.log('Dialog closed');
+  }
 }
